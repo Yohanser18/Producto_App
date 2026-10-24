@@ -1,0 +1,157 @@
+﻿@model ProductoApp.Models.Product
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<form method="post" asp-action="CreateProduct">
+
+    <div class="border p-3"> 
+       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+       <div class="form-group row">
+           <h2 class="text-success pl-3">
+               Nueva Categoria
+           </h2>
+       </div>
+       
+       <div class="container">
+
+           <div class="row">
+               <div class="col-md-6">
+                   <label asp-for="Nombre" class="form-label text-black fs-4">Nombre</label>
+                   <input asp-for="Nombre" class="form-control"/>
+                   <span asp-validation-for="Nombre" class="text-danger"></span>
+               </div>
+           </div>
+
+           <div class="row">
+               <div class="col-md-6">
+                   <label asp-for="Descripcion" class="form-label text-black fs-4">Descripcion</label>
+                   <textarea asp-for="Descripcion" class="form-control"></textarea>
+                   <span asp-validation-for="Descripcion" class="text-danger"></span>
+               </div>
+           </div>
+
+           <div class="row">
+               <div class="col-md-6">
+                   <label asp-for="Precio" class="form-label text-black fs-4">Precio</label>
+                   <input asp-for="Precio" class="form-control"/>
+                   <span asp-validation-for="Precio" class="text-danger"></span>
+               </div>
+           </div>
+
+           <div class="form-group col-md-6">
+               <label asp-for="CategoryId" class="form-label text-black fs-4">Categoria</label>
+               <select asp-for="CategoryId" class="form-control">
+                  <option value="">-- Seleccione Categoria</option>
+                    @foreach (var categoria in ViewBag.Categories)
+                    {
+                        <option value="@categoria.Id">
+                            @categoria.Nombre
+                        </option>
+                    }
+               </select>
+               <span asp-validation-for="CategoryId" class="text-danger"></span>
+           </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="ProveederId" class="form-label text-black fs-4">Proveedor</label>
+                <select asp-for="ProveederId" class="form-control">
+                    <option value="">-- Seleccione Categoria</option>
+                    @foreach (var proveeder in ViewBag.Proveeder)
+                    {
+                        <option value="@proveeder.Id">
+                            @proveeder.Nombre
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="ProveederId" class="text-danger"></span>
+            </div>
+            <br />
+
+            <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-success">Cuardar</button>
+                <a asp-controller="Product" asp-action="ProductIndex" class="btn btn-danger">Cancelar</a>
+            </div>
+
+       </div>
+
+    </div>
+</form>*@
+
+<form method="post" asp-action="CreateProduct">
+    <div class="container py-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10">
+              <div class="card shadow-sm border-0">
+                  <div class="card-header bg-primary text-white py-3">
+                      <h2 class="mb-2">
+                         <i class="bi bi-box-Seam me-2"></i>
+                          Nueva Categoria
+                      </h2>
+                  </div>
+
+                  <div class="card-body p-4">
+                      <div class="row mb-4">
+                       <div class="col-md-6">
+                         <label asp-for="Nombre" class="form-label fw-bold">Nombre</label>
+                         <input asp-for="Nombre" class="form-control bg-light" />
+                         <span asp-validation-for="Nombre" class="text-danger"></span>
+                       </div>
+
+                       <div class="col-md-6">
+                         <label asp-for="Precio" class="form-label fw-bold">Precio</label>
+                         <input asp-for="Precio" class="form-control bg-light" />
+                         <span asp-validation-for="Precio" class="text-danger"></span>
+                       </div>
+                      </div>
+
+                      <div class="row mb-4">
+                        <label asp-for="Descripcion" class="form-label fw-bold">Descripcion</label>
+                        <textarea asp-for="Descripcion" class="form-control bg-light"></textarea>
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                      </div>
+
+                      <div class="row mb-4">
+                          <div class="col-md-6">
+                                <label asp-for="CategoryId" class="form-label fw-bold">Categoria</label>
+                                <select asp-for="CategoryId" class="form-control bg-light">
+                                    <option value="">-- Seleccione Categoria</option>
+                                    @foreach (var categoria in ViewBag.Categories)
+                                    {
+                                        <option value="@categoria.Id">
+                                            @categoria.Nombre
+                                        </option>
+                                    }
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                          </div>
+
+                          <div class="col-md-6">
+                                <label asp-for="ProveederId" class="form-label fw-bold">Proveedor</label>
+                                <select asp-for="ProveederId" class="form-control bg-light">
+                                    <option value="">-- Seleccione Categoria</option>
+                                    @foreach (var proveeder in ViewBag.Proveeder)
+                                    {
+                                        <option value="@proveeder.Id">
+                                            @proveeder.Nombre
+                                        </option>
+                                    }
+                                </select>
+                                <span asp-validation-for="ProveederId" class="text-danger"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <hr />
+                  <div class="d-flex justify-content-center flex-wrap gap-lg-2">
+                    <button type="submit" class="btn btn-success">Cuardar</button>
+                    <a asp-controller="Product" asp-action="ProductIndex" class="btn btn-danger">Cancelar</a>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</form>
+

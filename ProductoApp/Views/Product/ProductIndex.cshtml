@@ -1,0 +1,83 @@
+﻿@using ProductoApp.ViewModel
+@*@model IEnumerable<ProductoApp.Models.Product>*@
+@model ProductViewModel
+@{
+    ViewData["Title"] = "ProductIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container p-3"> 
+
+  <div class="row pt-4">
+      <div class="col-6">
+          <h1 class="text-success">Lista de Categoria</h1>
+      </div>
+      <div class="col-6 text-end">
+          <a asp-controller="Product" asp-action="CreateProduct" class="btn btn-outline-success">
+              Crear Producto
+          </a>
+      </div>
+  </div>
+  <br />
+    <div class="row">
+        <form asp-controller="Product" asp-action="ProductIndex" method="get">
+            <p>
+                <input type="text" asp-for="SearchText" placeholder="Buscar Producto" class="col-md-10 fw-bold" />
+                <input type="submit" value=" Buscar"  class="btn btn-success ms-1"/>
+            </p>
+        </form>
+    </div>
+  <br />
+
+  @if (Model.Products.Count() > 0)
+  {
+    <table class="table table-bordered table-striped" style="width: 100%">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th>Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var item in Model.Products)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Precio</td>
+                    <td>@item.Categories.Nombre</td>
+                    <td>@item.Proveeder.Nombre</td>
+                    <td>
+                      <div class="w-auto btn-group" role="group">
+                       <a asp-controller="Product" asp-action="EditProducto" asp-route-Id="@item?.Id" class="btn btn-success mx-1" onclick="showConfirmAcctionEdit(event,@item?.Id)">
+                           Editar
+                       </a>
+                       <a asp-controller="Product" asp-action="DetailsProduct" asp-route-Id="@item?.Id" class="btn btn-primary mx-1">
+                          Detelle
+                       </a>
+                        <a asp-controller="Product" asp-action="DeleteProduct" asp-route-Id="@item?.Id" class="btn btn-danger max-1" onclick="showConfirmAcctionDelete(event,@item?.Id)">
+                           Eliminar
+                       </a>
+                      </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  }
+  else
+  {
+    <p>No hay datos cargados</p>
+  }
+
+</div>
+@section Scripts {
+	<script src="~/js/product.js"></script>
+}

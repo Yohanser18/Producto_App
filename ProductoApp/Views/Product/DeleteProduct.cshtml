@@ -1,0 +1,77 @@
+﻿@model ProductoApp.Models.Product
+@{
+    ViewData["Title"] = "DeleteProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="DeleteProduct">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-danger text-white py-3">
+                      <h2 class="mb-0">
+                          <i class="bi bi-box-Seam me-2"></i>
+                          Eliminar producto
+                      </h2>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <hidden asp-for="Id"></hidden>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Nombre" class="form-label fw-bold">Nombre</label>
+                                <input asp-for="Nombre" class="form-control bg-light" disabled/>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Precio" class="form-label fw-bold">Precio</label>
+                                <input asp-for="Precio" class="form-control bg-light" disabled />
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                          <label asp-for="Descripcion" class="form-label fw-bold">Descripcion</label>
+                          <textarea asp-for="Descripcion" class="form-control bg-light" style="min-height: 100px; height: auto; white-space: pre-wrap;" disabled></textarea>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="CategoryId" class="form-label fw-bolder">Categorias</label>
+                                <select asp-for="CategoryId" class="form-control bg-light" disabled>
+                                    <option value="">-- Seleccione Categoria --</option>
+                                    @foreach (var categoria in ViewBag.Categories)
+                                    {
+                                        <option value="@categoria.Id">
+                                            @categoria.Nombre
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="ProveederId" class="form-label fw-bold">Proveedor</label>
+                                <select asp-for="ProveederId" class="form-control bg-light" disabled>
+                                    <option value="">-- Seleccione Proveedor --</option>
+                                    @foreach (var proveedor in ViewBag.Proveeder)
+                                    {
+                                        <option value="@proveedor.Id">
+                                            @proveedor.Nombre
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <a asp-controller="Product" asp-action="ProductIndex" class="btn btn-success">Regresar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
